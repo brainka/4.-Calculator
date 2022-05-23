@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Calculator</title>
+	</head>
+	<body>
+		<div class="calculator-container">
+			<div id="button-container" class="button-container">
+				<div id="clear" class="clear-item" onclick="clearInput()">C</div>
+				<div id="display">0</div>
+				<div id="7" class="number-item">7</div>
+				<div id="8" class="number-item">8</div>
+				<div id="9" class="number-item">9</div>
+				<div id="%" class="operation-item" onclick="division()">%</div>
+				<div id="4" class="number-item">4</div>
+				<div id="5" class="number-item">5</div>
+				<div id="6" class="number-item">6</div>
+				<div id="x" class="operation-item" onclick="multiply()">x</div>
+				<div id="1" class="number-item">1</div>
+				<div id="2" class="number-item">2</div>
+				<div id="3" class="number-item">3</div>
+				<div id="-" class="operation-item" onclick="subtract()">-</div>
+				<div id="0" class="number-item">0</div>
+				<div id="." class="button-item">.</div>
+				<div id="=" class="evaluate-item" onclick="">=</div>
+				<div id="+" class="operation-item" onclick="add()">+</div>
+			</div>       
+		</div>
+
+		<script src="index.js"></script>
+	</body>
+</html>
