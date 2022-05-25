@@ -1,6 +1,12 @@
+body {
+	padding: 100px;
+	background-color: bisque;
+}
+
 .calculator-container {
-	background-color: rgb(240, 208, 148);
-	width: 80%;
+	display: flex;
+
+	justify-content: center;
 }
 
 .button-container {
@@ -10,6 +16,7 @@
 	column-gap: 10px;
 	row-gap: 15px;
 	justify-content: center;
+	align-items: center;
 }
 
 .number-item,
@@ -21,6 +28,7 @@
 	text-align: center;
 	padding: 40px;
 	border-radius: 15px;
+	font-size: 25px;
 }
 
 .number-item:hover,
@@ -43,14 +51,16 @@
 	display: flex;
 	grid-column-start: 2;
 	grid-column-end: 5;
-	text-align: center;
-	column-gap: 50px;
+	padding: 27px 0px 27px 0px;
+	justify-content: right;
+	column-gap: 10px;
 	border: solid;
 	border-radius: 15px;
-	border-width: 10px;
+	border-width: 8px;
 	border-color: rgb(105, 110, 255);
 	outline: none;
-	font-size: 20px;
+	font-size: 30px;
+	overflow: hidden;
 }
 
 .active {
