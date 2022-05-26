@@ -11,7 +11,6 @@ for (let i = 0; i < operationButton.length; i++) {
 
 function addActiveClass(event) {
 	let currentOperatorSelected = document.getElementById(event.target.id);
-	console.log(event.target);
 
 	switch (event.target.id) {
 		case '+':
@@ -64,8 +63,6 @@ let selectedDivide = false;
 
 let selectedOperator = '';
 
-let lastDigitTyped = 0;
-
 let newStringCounter = '';
 
 function displayInput(event) {
@@ -114,20 +111,24 @@ function add(a = parseFloat(counter)) {
 		return newStringCounter;
 	} else if (activeOperator !== '+' && plusOperator) {
 		let currentValue = parseFloat(document.getElementById('display').innerText);
-		console.log(activeOperator);
+		console.log(`current value is ${currentValue}`);
 		switch (activeOperator) {
 			case '+':
+				// counter = parseFLoat(counter) + currentValue;
 				counter = currentValue;
 				console.log(counter);
 				break;
 			case '-':
+				// counter = parseFloat(counter) - currentValue;
 				counter = currentValue;
 				console.log(counter);
 				break;
 			case 'x':
+				// counter = parseFloat(counter) + currentValue;
 				counter = currentValue;
 				break;
 			case '%':
+				// counter = parseFloat(counter) + currentValue;
 				counter = currentValue;
 				break;
 		}
@@ -143,12 +144,11 @@ function add(a = parseFloat(counter)) {
 	} else if (
 		document.getElementById(activeOperator).classList.contains('active')
 	) {
+		document.getElementById('display').innerText = a;
 	} else {
-		lastDigitTyped = parseFloat(document.getElementById('display').innerText);
-		console.log(lastDigitTyped);
 		document.getElementById('display').innerText =
 			a + parseFloat(document.getElementById('display').innerText);
-
+		console.log(counter);
 		return (counter = document.getElementById('display').innerText);
 	}
 }
@@ -166,7 +166,8 @@ function subtract(a = parseFloat(counter)) {
 		return newStringCounter;
 	} else if (activeOperator !== '-' && minusOperator) {
 		let currentValue = parseFloat(document.getElementById('display').innerText);
-
+		console.log(`current value ${currentValue}`);
+		console.log(`current counter ${counter}`);
 		switch (activeOperator) {
 			case '+':
 				//counter = parseFloat(counter) + currentValue;
@@ -174,14 +175,17 @@ function subtract(a = parseFloat(counter)) {
 				console.log(`in + case ${counter}`);
 				break;
 			case '-':
+				//counter = parseFloat(counter) - currentValue;
 				counter = currentValue;
 				console.log(`in - case ${counter}`);
 				break;
 			case 'x':
+				// counter = parseFloat(counter) * currentValue;
 				counter = currentValue;
 				console.log(`in * case ${counter}`);
 				break;
 			case '%':
+				// counter = parseFloat(counter) / currentValue;
 				counter = currentValue;
 				console.log(`in /= case ${counter}`);
 				break;
@@ -200,7 +204,6 @@ function subtract(a = parseFloat(counter)) {
 	) {
 		document.getElementById('display').innerText = a;
 	} else {
-		lastDigitTyped = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a - parseFloat(document.getElementById('display').innerText);
 
@@ -227,18 +230,22 @@ function multiply(a = parseFloat(counter)) {
 
 		switch (activeOperator) {
 			case '+':
+				// counter = parseFloat(counter) + currentValue;
 				counter = currentValue;
 				console.log(`in + case ${counter}`);
 				break;
 			case '-':
+				// counter = parseFloat(counter) - currentValue;
 				counter = currentValue;
 				console.log(`in - case ${counter}`);
 				break;
 			case 'x':
+				// counter = parseFloat(counter) * currentValue;
 				counter = currentValue;
 				console.log(`in * case ${counter}`);
 				break;
 			case '%':
+				// counter = parseFloat(counter) / currentValue;
 				counter = currentValue;
 				console.log(`in /= case ${counter}`);
 				break;
@@ -255,8 +262,8 @@ function multiply(a = parseFloat(counter)) {
 	} else if (
 		document.getElementById(activeOperator).classList.contains('active')
 	) {
+		document.getElementById('display').innerText = a;
 	} else {
-		lastDigitTyped = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a * parseFloat(document.getElementById('display').innerText);
 
@@ -280,18 +287,22 @@ function division(a = parseFloat(counter)) {
 
 		switch (activeOperator) {
 			case '+':
+				// counter = parseFloat(counter) + currentValue;
 				counter = currentValue;
 				console.log(`in + case ${counter}`);
 				break;
 			case '-':
+				// counter = parseFloat(counter) - currentValue;
 				counter = currentValue;
 				console.log(`in - case ${counter}`);
 				break;
 			case 'x':
+				// counter = parseFloat(counter) * currentValue;
 				counter = currentValue;
 				console.log(`in * case ${counter}`);
 				break;
 			case '%':
+				// counter = parseFloat(counter) / currentValue;
 				counter = currentValue;
 				console.log(`in /= case ${counter}`);
 				break;
@@ -308,8 +319,8 @@ function division(a = parseFloat(counter)) {
 	} else if (
 		document.getElementById(activeOperator).classList.contains('active')
 	) {
+		document.getElementById('display').innerText = a;
 	} else {
-		lastDigitTyped = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a / parseFloat(document.getElementById('display').innerText);
 		return (counter = document.getElementById('display').innerText);
@@ -318,13 +329,8 @@ function division(a = parseFloat(counter)) {
 
 function equals(a = parseFloat(counter)) {
 	let currentValue = parseFloat(document.getElementById('display').innerText);
-	console.log(activeOperator);
-	console.log(`current number ${currentNumber}`);
+	console.log(`current value ${currentValue}`);
 	console.log(`counter is ${counter}`);
-
-	if (!firstTime) {
-		currentValue = lastDigitTyped;
-	}
 
 	if (selectedPlus) {
 		counter = a + currentNumber;
@@ -342,8 +348,9 @@ function equals(a = parseFloat(counter)) {
 	switch (activeOperator) {
 		case '+':
 			if (selectedPlus == false) {
-				counter = counter + parseFloat(currentNumber);
-				console.log(`current number ${currentNumber}`);
+				console.log(`inside switch for plus ${currentValue}`);
+				counter = counter + parseFloat(currentValue);
+				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
 			}
 
@@ -359,8 +366,8 @@ function equals(a = parseFloat(counter)) {
 			break;
 		case '-':
 			if (selectedMinus == false) {
-				counter = counter - parseFloat(currentNumber);
-				console.log(`current number ${currentNumber}`);
+				counter = counter - parseFloat(currentValue);
+				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
 			}
 
@@ -376,8 +383,8 @@ function equals(a = parseFloat(counter)) {
 			break;
 		case 'x':
 			if (selectedMultiply == false) {
-				counter = counter * parseFloat(currentNumber);
-				console.log(`current number ${currentNumber}`);
+				counter = counter * parseFloat(currentValue);
+				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
 			}
 
@@ -394,8 +401,8 @@ function equals(a = parseFloat(counter)) {
 			break;
 		case '%':
 			if (selectedDivide == false) {
-				counter = counter / parseFloat(currentNumber);
-				console.log(`current number ${currentNumber}`);
+				counter = counter / parseFloat(currentValue);
+				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
 			}
 
@@ -421,9 +428,22 @@ function clearInput() {
 	firstTime = true;
 	counter = 0;
 	newStringCounter = '';
-	activeOperator = '';
+
 	plusOperator = true;
 	minusOperator = true;
 	multitplyOperator = true;
 	divisionOperator = true;
+
+	if (activeOperator !== '') {
+		document.getElementById(activeOperator).classList.remove('active');
+		activeOperator = '';
+	}
+
+	selectedPlus = false;
+	selectedMinus = false;
+	selectedMultiply = false;
+	selectedDivide = false;
+	selectedOperator = '';
+
+	currentNumber = 0;
 }

@@ -1,6 +1,7 @@
 body {
 	padding: 100px;
 	background-color: bisque;
+	color: white;
 }
 
 .calculator-container {
@@ -12,11 +13,14 @@ body {
 .button-container {
 	display: grid;
 	grid-template-columns: 100px 100px 100px 100px;
-	grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px;
+	grid-template-rows: 100px 100px 100px 100px 100px;
 	column-gap: 10px;
 	row-gap: 15px;
 	justify-content: center;
 	align-items: center;
+	border: 15px solid black;
+	border-radius: 15px;
+	background-color: black;
 }
 
 .number-item,
@@ -36,7 +40,7 @@ body {
 .button-item:hover,
 .evaluate-item:hover,
 .clear-item:hover {
-	background-color: rgb(255, 132, 0);
+	font-size: 32px;
 	cursor: pointer;
 }
 
@@ -64,5 +68,71 @@ body {
 }
 
 .active {
-	background-color: yellow;
+	background-color: rgb(0, 255, 72);
+}
+
+/* Portrait */
+@media only screen and (min-device-width: 390px) and (max-device-height: 844px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+	body {
+		padding: 100px;
+		background-color: bisque;
+		color: white;
+	}
+
+	.calculator-container {
+		display: flex;
+		justify-content: center;
+	}
+
+	.button-container {
+		display: grid;
+		grid-template-columns: 80px 80px 80px 80px;
+		grid-template-rows: 80px 80px 80px 80px 80px;
+		column-gap: 10px;
+		row-gap: 15px;
+		justify-content: center;
+		align-items: center;
+		border: 10px solid black;
+		border-radius: 10px;
+		background-color: black;
+	}
+
+	.number-item,
+	.operation-item,
+	.button-item,
+	.evaluate-item,
+	.clear-item {
+		background-color: rgb(61, 199, 187);
+		text-align: center;
+		padding: 27px;
+		border-radius: 15px;
+		font-size: 25px;
+	}
+
+	.operation-item {
+		background-color: rgb(199, 61, 194);
+		text-align: center;
+		padding: 27px;
+		border-radius: 15px;
+	}
+
+	#display {
+		display: flex;
+		grid-column-start: 2;
+		grid-column-end: 5;
+		padding: 15px 0px 15px 0px;
+		justify-content: right;
+		column-gap: 10px;
+		border: solid;
+		border-radius: 15px;
+		border-width: 8px;
+		border-color: rgb(105, 110, 255);
+		outline: none;
+		font-size: 30px;
+		overflow: hidden;
+	}
+
+	.active {
+		background-color: rgb(0, 255, 72);
+	}
 }
