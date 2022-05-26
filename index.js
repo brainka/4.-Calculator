@@ -65,6 +65,8 @@ let selectedOperator = '';
 
 let newStringCounter = '';
 
+let lastDigit = 0;
+
 function displayInput(event) {
 	let newStringArray = [];
 
@@ -146,6 +148,7 @@ function add(a = parseFloat(counter)) {
 	) {
 		document.getElementById('display').innerText = a;
 	} else {
+		lastDigit = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a + parseFloat(document.getElementById('display').innerText);
 		console.log(counter);
@@ -204,6 +207,7 @@ function subtract(a = parseFloat(counter)) {
 	) {
 		document.getElementById('display').innerText = a;
 	} else {
+		lastDigit = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a - parseFloat(document.getElementById('display').innerText);
 
@@ -264,6 +268,7 @@ function multiply(a = parseFloat(counter)) {
 	) {
 		document.getElementById('display').innerText = a;
 	} else {
+		lastDigit = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a * parseFloat(document.getElementById('display').innerText);
 
@@ -321,6 +326,7 @@ function division(a = parseFloat(counter)) {
 	) {
 		document.getElementById('display').innerText = a;
 	} else {
+		lastDigit = parseFloat(document.getElementById('display').innerText);
 		document.getElementById('display').innerText =
 			a / parseFloat(document.getElementById('display').innerText);
 		return (counter = document.getElementById('display').innerText);
@@ -331,6 +337,8 @@ function equals(a = parseFloat(counter)) {
 	let currentValue = parseFloat(document.getElementById('display').innerText);
 	console.log(`current value ${currentValue}`);
 	console.log(`counter is ${counter}`);
+	console.log(`last digit is ${lastDigit}`);
+	console.log(activeOperator);
 
 	if (selectedPlus) {
 		counter = a + currentNumber;
@@ -348,6 +356,12 @@ function equals(a = parseFloat(counter)) {
 	switch (activeOperator) {
 		case '+':
 			if (selectedPlus == false) {
+				if (
+					document.getElementById(activeOperator).classList.contains('active')
+				) {
+					currentValue = lastDigit;
+				}
+
 				console.log(`inside switch for plus ${currentValue}`);
 				counter = counter + parseFloat(currentValue);
 				console.log(`current number ${currentValue}`);
@@ -366,6 +380,11 @@ function equals(a = parseFloat(counter)) {
 			break;
 		case '-':
 			if (selectedMinus == false) {
+				if (
+					document.getElementById(activeOperator).classList.contains('active')
+				) {
+					currentValue = lastDigit;
+				}
 				counter = counter - parseFloat(currentValue);
 				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
@@ -383,6 +402,11 @@ function equals(a = parseFloat(counter)) {
 			break;
 		case 'x':
 			if (selectedMultiply == false) {
+				if (
+					document.getElementById(activeOperator).classList.contains('active')
+				) {
+					currentValue = lastDigit;
+				}
 				counter = counter * parseFloat(currentValue);
 				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
@@ -401,6 +425,11 @@ function equals(a = parseFloat(counter)) {
 			break;
 		case '%':
 			if (selectedDivide == false) {
+				if (
+					document.getElementById(activeOperator).classList.contains('active')
+				) {
+					currentValue = lastDigit;
+				}
 				counter = counter / parseFloat(currentValue);
 				console.log(`current number ${currentValue}`);
 				console.log(`counter is ${counter}`);
@@ -434,11 +463,17 @@ function clearInput() {
 	multitplyOperator = true;
 	divisionOperator = true;
 
-	if (activeOperator !== '') {
-		document.getElementById(activeOperator).classList.remove('active');
-		activeOperator = '';
+	for (let i = 0; i < operationButton.length; i++) {
+		if (
+			document
+				.getElementById(operationButton[i].id)
+				.classList.contains('active')
+		) {
+			document.getElementById(operationButton[i].id).classList.remove('active');
+		}
 	}
 
+	activeOperator = '';
 	selectedPlus = false;
 	selectedMinus = false;
 	selectedMultiply = false;
