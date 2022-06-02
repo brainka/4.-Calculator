@@ -1,6 +1,6 @@
 console.log('startNewREFACTORfinal.js');
 
-//init NEW variables
+//init variables
 let firstTime = true;
 let displayCounter = '';
 let runningTotal = 0;
@@ -8,7 +8,6 @@ let runningTotal = 0;
 let lastSelectedOperator = '';
 let lastSelectedNumber;
 
-//add display function to numberpad/////////////////////////////////
 let numberPad = document.querySelectorAll('.number-item, .button-item');
 for (let i = 0; i < numberPad.length; i++) {
 	numberPad[i].addEventListener('click', displayInput);
@@ -29,12 +28,9 @@ function displayInput(event) {
 		// }
 	}
 }
-/////////////////////////////////////////////////////////////////////
 
 function clearInput() {
 	document.getElementById('display').innerText = '0';
-
-	console.log(`display counter before ${displayCounter}`);
 
 	firstTime = true;
 	displayCounter = '';
@@ -51,7 +47,6 @@ function clearInput() {
 	}
 }
 
-//add add active class function to operator buttons//////////////
 let operationItem = document.querySelectorAll('.operation-item');
 for (let i = 0; i < operationItem.length; i++) {
 	operationItem[i].addEventListener('click', addActiveClass);
@@ -66,14 +61,11 @@ function addActiveClass(event) {
 
 		if (operation === id) {
 			document.getElementById(operation).classList.add('active');
-			//activeOperator = operation;
 		} else {
 			document.getElementById(operation).classList.remove('active');
 		}
 	}
-	//return activeOperator;
 }
-//////////////////////////////////////////////////////////////////
 
 function evaluate(operator, currentlyDisplayed) {
 	switch (operator) {
@@ -126,49 +118,13 @@ function calculate(activeOperator) {
 		lastSelectedOperator = activeOperator;
 	} else if (activeOperator !== lastSelectedOperator) {
 		evaluate(lastSelectedOperator, currentlyDisplayed);
-
 		lastSelectedNumber = currentlyDisplayed;
-		// switch (lastSelectedOperator) {
-		// 	case '+':
-		// 		runningTotal = runningTotal + parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	case '-':
-		// 		runningTotal = runningTotal - parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	case 'x':
-		// 		runningTotal = runningTotal * parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	case '%':
-		// 		runningTotal = runningTotal / parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	default:
-		// 		break;
-		// }
-
 		document.getElementById('display').innerText = runningTotal;
 		displayCounter = '';
 		lastSelectedOperator = activeOperator;
 	} else {
 		evaluate(activeOperator, currentlyDisplayed);
 		lastSelectedNumber = currentlyDisplayed;
-		// switch (activeOperator) {
-		// 	case '+':
-		// 		runningTotal = runningTotal + parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	case '-':
-		// 		runningTotal = runningTotal - parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	case 'x':
-		// 		runningTotal = runningTotal * parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	case '%':
-		// 		runningTotal = runningTotal / parseFloat(currentlyDisplayed);
-		// 		break;
-		// 	default:
-		// 		console.log('capture anything that may be missed');
-		// 		break;
-		// }
-
 		document.getElementById('display').innerText = runningTotal;
 		displayCounter = '';
 		lastSelectedOperator = activeOperator;
@@ -200,11 +156,6 @@ function division() {
 function equals() {
 	let currentlyDisplayed = document.getElementById('display').innerText;
 
-	console.log(currentlyDisplayed);
-	console.log(`last selected operator is ${lastSelectedOperator}`);
-
-	console.log(`last selected number is ${lastSelectedNumber}`);
-
 	if (firstTime) {
 		document.getElementById('display').innerText = currentlyDisplayed;
 	} else if (parseFloat(runningTotal) === parseFloat(currentlyDisplayed)) {
@@ -212,7 +163,6 @@ function equals() {
 		evaluate(lastSelectedOperator, lastSelectedNumber);
 		console.log(`running total is ${runningTotal}`);
 		document.getElementById('display').innerText = runningTotal;
-		console.log(currentlyDisplayed);
 
 		displayCounter = '';
 	} else {
