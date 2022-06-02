@@ -22,10 +22,6 @@ function displayInput(event) {
 		let newString = displayCounter.concat(newStringArray[index]);
 		displayCounter = newString;
 		document.getElementById('display').innerText = newString;
-
-		// if (!firstTime) {
-		// 	document.getElementById(selectedOperator).classList.remove('active');
-		// }
 	}
 }
 
@@ -141,8 +137,6 @@ function subtract() {
 	calculate(activeOperator);
 }
 
-//work on changing operators and evaluation
-
 function multiply() {
 	activeOperator = 'x';
 	calculate(activeOperator);
@@ -158,16 +152,15 @@ function equals() {
 
 	if (firstTime) {
 		document.getElementById('display').innerText = currentlyDisplayed;
+		runningTotal = parseFloat(currentlyDisplayed);
+		firstTime = false;
+		displayCounter = '';
 	} else if (parseFloat(runningTotal) === parseFloat(currentlyDisplayed)) {
-		//grab last digit selected
 		evaluate(lastSelectedOperator, lastSelectedNumber);
-		console.log(`running total is ${runningTotal}`);
 		document.getElementById('display').innerText = runningTotal;
-
 		displayCounter = '';
 	} else {
 		evaluate(lastSelectedOperator, currentlyDisplayed);
-
 		document.getElementById('display').innerText = runningTotal;
 		displayCounter = '';
 	}
